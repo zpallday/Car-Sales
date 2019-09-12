@@ -1,18 +1,25 @@
-import React from 'react';
-import AdditionalFeature from './AdditionalFeature';
+import React from "react";
 
-const AdditionalFeatures = props => {
+import AdditionalFeature from "./AdditionalFeature";
+
+const AdditionalFeatures = ({ store, add }) => {
   return (
     <div className="content">
       <h4>Additional Features</h4>
-      {props.store.length ? (
+
+      {store.length ? (
         <ol type="1">
-          {props.store.map(item => (
-            <AdditionalFeature key={item.id} feature={item} addFeature={props.addFeature}/>
+          {store.map(item => (
+            <AdditionalFeature
+              key={item.id}
+              feature={item}
+              {...item}
+              add={add}
+            />
           ))}
         </ol>
       ) : (
-        <p>Nice looking car!</p>
+        <p>A Fine Choice Indeed!</p>
       )}
     </div>
   );

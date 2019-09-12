@@ -5,19 +5,28 @@ import Header from './components/Header';
 import AddedFeatures from './components/AddedFeatures';
 import AdditionalFeatures from './components/AdditionalFeatures';
 import Total from './components/Total';
-import { reducer } from './reducer/';
-const App = (props) => {
- 
+const App = ({removeFeature, addFeature, car, store, additionalPrice}) => {
+ const deleteFeature = item => {
+   removeFeature(item)
+ }
+
+ const purchaseItem = (e, item) => {
+   e.preventDefault();
+
+   addFeature(item);
+ };
+
+
 
   return (
     <div className="boxes">
       <div className="box">
-        <Header car={props.car} />
-        <AddedFeatures car={props.car} removeFeature={props.removeFeature} />
+        <Header car={car} />
+        <AddedFeatures car={car} remove={deleteFeature} />
       </div>
       <div className="box">
-        <AdditionalFeatures store={props.store} addFeature={props.addFeature} />
-        <Total car={props.car} additionalPrice={props.additionalPrice} />
+        <AdditionalFeatures store={store} add={purchaseItem} />
+        <Total car={car} additionalPrice={additionalPrice} />
       </div>
     </div>
   );
